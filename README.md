@@ -65,6 +65,10 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ### Demo
 
 
-https://github.com/Tushardev0172/Tech-Books/assets/120170474/af3365cd-493b-4408-9b40-7b74dfcfcf8e
+
+https://github.com/Tushardev0172/Tech-Books/assets/120170474/7713e957-293f-4b55-9376-c0a101936fec
+
+
+
 
 
