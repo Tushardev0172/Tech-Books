@@ -71,13 +71,23 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ## Screenshots
 ### Main Page
-![Screenshot (73)](https://github.com/Tushardev0172/Tech-Books/assets/120170474/c0fe6795-3503-4866-aaba-45c5baea56aa)
+![Screenshot (73)](https://github.com/Tushardev0172/Tech-Books/assets/120170474/de4d53bb-30c4-421c-ac87-ded9039cc405)
+
 
 ### Footer
-![Screenshot (76)](https://github.com/Tushardev0172/Tech-Books/assets/120170474/a79ba296-7969-4f0f-aac2-0238d284b102)
+![Screenshot (76)](https://github.com/Tushardev0172/Tech-Books/assets/120170474/1cdeca1c-7ae0-407d-89fc-b47b8d5588d6)
+
 
 ### Cart
-![Screenshot (74)](https://github.com/Tushardev0172/Tech-Books/assets/120170474/a43e51a2-2e45-4340-8299-ef4e8000764d)
+![Screenshot (74)](https://github.com/Tushardev0172/Tech-Books/assets/120170474/29bec3a7-ed75-44c6-b106-a18bbe9762f2)
+
 
 ### Payment Gateway
-![Screenshot (75)](https://github.com/Tushardev0172/Tech-Books/assets/120170474/11aa2a42-beb6-4940-af2d-e8468640a547)
+![Screenshot (75)](https://github.com/Tushardev0172/Tech-Books/assets/120170474/fb1b153f-9d24-45f3-a868-9b805edb27c4)
+
+### Demo
+
+
+https://github.com/Tushardev0172/Tech-Books/assets/120170474/af3365cd-493b-4408-9b40-7b74dfcfcf8e
+
+
