@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { FaCartPlus } from "react-icons/fa";
+import { FaCartShopping } from "react-icons/fa6";
 import { cartContext } from "../Global/cartContext";
 
 const Navbar = ({ cartToggle }) => {
@@ -15,7 +15,7 @@ const Navbar = ({ cartToggle }) => {
           {" "}
           <Link to="/cart" className="flex items-center gap-4">
             <span>
-              <FaCartPlus className="text-[25px] font-bold" />
+              <FaCartShopping className="text-[25px] font-bold" />
             </span>
             <span className="w-[35px] h-[35px] bg-[#ec1313] rounded-[50%] text-[#fff] cursor-pointer text-center text-[13px] flex justify-center items-center font-bold">
               {shoppingCart ? shoppingCart.length : 0}

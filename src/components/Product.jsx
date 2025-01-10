@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import Banner from "./Banner";
 import { productContext } from "../Global/productContext";
 import { cartContext } from "../Global/cartContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Products = () => {
   const { products } = useContext(productContext);
@@ -9,6 +11,7 @@ const Products = () => {
 
   return (
     <div>
+      <ToastContainer />
       <Banner />
       <h1
         style={{
@@ -56,7 +59,15 @@ const Products = () => {
             {/* Add to Cart Button */}
             <div
               onClick={() =>
-                dispatch({ type: "ADD_TO_CART", id: product.id, products })
+                dispatch(
+                  { type: "ADD_TO_CART", id: product.id, products },
+                  toast.success("Product Added to cart", {
+                    position: "top-center",
+                    autoClose: 1000,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                  })
+                )
               }
               className="w-[80%] mx-auto rounded-sm bg-[#ff1a1a] text-center lg:py-4 xs:py-2 cursor-pointer"
             >

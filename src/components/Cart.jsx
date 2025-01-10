@@ -1,36 +1,23 @@
 import React, { useContext } from "react";
-import StripeCheckout from "react-stripe-checkout";
-import axios from "axios";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "./CheckoutForm";
 import { cartContext } from "../Global/cartContext";
-import { FaMinus } from "react-icons/fa";
-import { FaPlus } from "react-icons/fa";
-import { FaRegTrashAlt } from "react-icons/fa";
+import { FaMinus, FaPlus, FaArrowAltCircleLeft } from "react-icons/fa";
+import { HiOutlineTrash } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
-import { FaArrowAltCircleLeft } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const Cart = (props) => {
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+
+const Cart = () => {
   const { dispatch, shoppingCart, totalPrice, qty } = useContext(cartContext);
   const navigate = useNavigate();
 
-  const handleToken = async (token) => {
-    const product = { name: "All Products", price: totalPrice };
-    const response = await axios.post(
-      "https://w7gqb.sse.codesandbox.io/checkout",
-      {
-        token,
-        product,
-      }
-    );
-    const { status } = response.data;
-    if (status === "success") {
-      dispatch({ type: "EMPTY" });
-      props.history.push(`/`);
-    } else {
-    }
-  };
-
   return (
     <div className="w-full mt-4 px-4 md:px-20 flex flex-wrap items-start">
+      <ToastContainer />
       {/* Back Button */}
       <div className="w-full">
         <button
@@ -61,7 +48,7 @@ const Cart = (props) => {
                   ₹{product.price}.00
                 </span>
                 <span
-                  className="flex items-center justify-center w-[40px] h-[40px] text-center border-[1.1px] boder-solid border-[orangered] text-[orangered] rounded-[50%] cursor-pointer"
+                  className="flex items-center justify-center w-[40px] h-[40px] text-center border-[1.1px] border-solid border-[orangered] text-[orangered] rounded-[50%] cursor-pointer"
                   onClick={() => dispatch({ type: "INC", id: product.id })}
                 >
                   <FaPlus />
@@ -80,11 +67,19 @@ const Cart = (props) => {
                 </span>
                 <button
                   onClick={() =>
-                    dispatch({ type: "DELETE_PRODUCT", id: product.id })
+                    dispatch(
+                      { type: "DELETE_PRODUCT", id: product.id },
+                      toast.error("Product Deleted", {
+                        position: "top-center",
+                        autoClose: 1000,
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                      })
+                    )
                   }
-                  className="px-[15px] text-[#f77575d9] bg-transparent font-[20px] cursor-pointer"
+                  className="px-[15px] text-[#f77575d9] bg-transparent text-[30px] cursor-pointer"
                 >
-                  <FaRegTrashAlt />
+                  <HiOutlineTrash />
                 </button>
               </div>
             ))
@@ -106,14 +101,9 @@ const Cart = (props) => {
               <div className="font-bold text-[#f57224]">₹{totalPrice}.00</div>
             </div>
             <div className="my-[15px] border-t-[1px] border-solid border-[#999] pt-[15px]">
-              <StripeCheckout
-                stripeKey="pk_test_HnF0cQhq9UGw2GvWRltNiAQM00kn9HlRCg"
-                token={handleToken}
-                billingAddress
-                shippingAddress
-                amount={totalPrice * 100}
-                name="all products in the cart"
-              />
+              <Elements stripe={stripePromise}>
+                <CheckoutForm totalPrice={totalPrice} />
+              </Elements>
             </div>
           </div>
         </div>

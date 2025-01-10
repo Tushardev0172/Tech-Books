@@ -81,7 +81,12 @@ export const CartReducer = (state, action) => {
       localStorage.removeItem("shoppingCart");
       localStorage.removeItem("totalPrice");
       localStorage.removeItem("qty");
-      return { shoppingCart: [], totalPrice: 0, qty: 0, message: "" };
+      return {
+        shoppingCart: [],
+        totalPrice: 0,
+        qty: 0,
+        message: "Cart cleared successfully!",
+      };
 
     default:
       return state;
