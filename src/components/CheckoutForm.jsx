@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import {
+  useStripe,
+  useElements,
+  CardNumberElement,
+  CardExpiryElement,
+  CardCvcElement,
+} from "@stripe/react-stripe-js";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { cartContext } from "../Global/cartContext";
@@ -42,7 +48,7 @@ const CheckoutForm = ({ totalPrice }) => {
 
       const payload = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
-          card: elements.getElement(CardElement),
+          card: elements.getElement(CardNumberElement),
         },
       });
 
@@ -87,22 +93,61 @@ const CheckoutForm = ({ totalPrice }) => {
     }
   };
 
+  const cardStyle = {
+    style: {
+      base: {
+        color: "#32325d",
+        fontFamily: "'Roboto', sans-serif",
+        fontSmoothing: "antialiased",
+        fontSize: "16px",
+        "::placeholder": {
+          color: "#aab7c4",
+        },
+      },
+      invalid: {
+        color: "#fa755a",
+        iconColor: "#fa755a",
+      },
+    },
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <CardElement onChange={handleCardChange} />
+    <form onSubmit={handleSubmit} className="p-4 bg-white rounded-md shadow">
+      <h2 className="text-lg font-semibold mb-4">Payment Information</h2>
+      {/* Card Number Field */}
+      <div className="mb-4">
+        <label className="block text-sm font-medium mb-1">Card Number</label>
+        <div className="border p-2 rounded-md">
+          <CardNumberElement options={cardStyle} onChange={handleCardChange} />
+        </div>
+      </div>
+      {/* Expiry Date Field */}
+      <div className="mb-4">
+        <label className="block text-sm font-medium mb-1">Expiry Date</label>
+        <div className="border p-2 rounded-md">
+          <CardExpiryElement options={cardStyle} onChange={handleCardChange} />
+        </div>
+      </div>
+      {/* CVC Field */}
+      <div className="mb-4">
+        <label className="block text-sm font-medium mb-1">CVC</label>
+        <div className="border p-2 rounded-md">
+          <CardCvcElement options={cardStyle} onChange={handleCardChange} />
+        </div>
+      </div>
       <button
         type="submit"
         disabled={!stripe || loading}
-        className={`p-2 rounded-lg my-2 ${
+        className={`w-full p-2 rounded-lg my-2 ${
           loading
             ? "bg-gray-400 text-gray-700 cursor-not-allowed"
-            : "bg-[#f57224] text-white"
+            : "bg-[#f57224] text-white font-bold"
         }`}
       >
         {loading ? "Processing..." : `Pay ₹${totalPrice}`}
       </button>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {paymentSuccess && <p style={{ color: "green" }}>Payment Successful!</p>}
+      {error && <p className="text-red-500">{error}</p>}
+      {paymentSuccess && <p className="text-green-500">Payment Successful!</p>}
     </form>
   );
 };

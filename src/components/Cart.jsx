@@ -27,7 +27,7 @@ const Cart = () => {
           <FaArrowAltCircleLeft />
         </button>
       </div>
-      <div className="w-full md:w-[75%] border border-solid border-[#fafafa] rounded-[5px]">
+      <div className="w-full md:w-[65%] border border-solid border-[#fafafa] rounded-lg">
         {shoppingCart.length
           ? shoppingCart.map((product) => (
               <div
@@ -87,7 +87,7 @@ const Cart = () => {
       </div>
 
       {shoppingCart.length ? (
-        <div className="w-full md:w-[25%] mt-4 md:mt-0 md:pl-[20px]">
+        <div className="w-full md:w-[35%] mt-4 md:mt-0">
           <div className="bg-[#fff] p-[13px]">
             <h3 className="font-[18px] border-b-[1px] border-solid border-[#999] pb-[7px]">
               Order Summary
