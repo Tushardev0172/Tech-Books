@@ -34,7 +34,3 @@ The Footer
 
 The Cart Page
 ![Screenshot (3)](https://github.com/user-attachments/assets/25c36e74-9660-4870-a8ca-c4afb43f06dc)
-
-The payment gateway
-![Screenshot (4)](https://github.com/user-attachments/assets/ba5a1896-9016-4ab3-96f8-9ae11960e3f3)
-
